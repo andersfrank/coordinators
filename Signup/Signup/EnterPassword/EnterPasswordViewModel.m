@@ -9,22 +9,14 @@
 #import "EnterPasswordViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "Session.h"
-#import "SessionManager.h"
-
-@interface EnterPasswordViewModel ()
-
-@property (nonatomic, strong) NSString *email;
-
-@end
 
 @implementation EnterPasswordViewModel
 
-- (instancetype)initWithEmail:(NSString *)email {
+- (instancetype)init {
     self = [super init];
     if (self) {
         
-        _email = email;
-        
+
         RACSignal *passwordValid = [RACObserve(self, password)
             map:^id(NSString *name) {
                 return @(name.length > 4);
@@ -33,18 +25,11 @@
         @weakify(self)
         _signUpCommand = [[RACCommand alloc] initWithEnabled:passwordValid signalBlock:^RACSignal *(id input) {
             @strongify(self)
-            return [self signupWithEmail:self.email password:self.password];
+            return [RACSignal return:self.password];
         }];
 
     }
     return self;
 }
-
-- (RACSignal *)signupWithEmail:(NSString *)email password:(NSString *)password {
-    Session *session = [[Session alloc] initWithEmail:self.email];
-    [SessionManager sharedManager].session = session;
-    return [[RACSignal return:session] delay:2];
-}
-
 
 @end

@@ -20,8 +20,10 @@
                 return @(email.length > 5);
             }];
         
+        @weakify(self)
         _doneButtonCommand = [[RACCommand alloc] initWithEnabled:emailValid signalBlock:^RACSignal *(id input) {
-            return [RACSignal empty];
+            @strongify(self)
+            return [RACSignal return:self.email];
         }];
 
     }

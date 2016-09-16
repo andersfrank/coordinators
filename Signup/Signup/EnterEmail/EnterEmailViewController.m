@@ -6,10 +6,10 @@
 //  Copyright © 2016 Anders Frank. All rights reserved.
 //
 
-#import "EnterEmailViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "EnterEmailViewModel.h"
 
+#import "EnterEmailViewController.h"
+#import "EnterEmailViewModel.h"
 #import "EnterPasswordViewController.h"
 #import "EnterPasswordViewModel.h"
 
@@ -28,17 +28,6 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.doneButtonCommand;
-    
-    
-    @weakify(self)
-    [self.viewModel.doneButtonCommand.executionSignals subscribeNext:^(id x) {
-        @strongify(self)
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        EnterPasswordViewController *vc = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(EnterPasswordViewController.class)];
-        vc.viewModel = [[EnterPasswordViewModel alloc] initWithEmail:self.viewModel.email];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }];
 }
 
 

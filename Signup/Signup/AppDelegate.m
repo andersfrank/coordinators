@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "StartViewController.h"
-#import "StartViewModel.h"
+#import "AppCoordinator.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic) AppCoordinator *appCoordinator;
 
 @end
 
@@ -18,9 +20,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    StartViewController *vc = (StartViewController *)self.window.rootViewController;
-    vc.viewModel = [StartViewModel new];
+    self.appCoordinator = [[AppCoordinator alloc] initWithStartViewController:(StartViewController *)self.window.rootViewController];
     
     return YES;
 }

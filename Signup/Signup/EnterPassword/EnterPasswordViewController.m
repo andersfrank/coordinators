@@ -21,13 +21,6 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:nil action:NULL];
     self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.signUpCommand;
-    
-    @weakify(self)
-    [self.viewModel.signUpCommand.executionSignals.flatten subscribeNext:^(Session *session) {
-        @strongify(self)
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
 }
 
 

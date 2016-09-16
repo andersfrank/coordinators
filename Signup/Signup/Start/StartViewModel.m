@@ -7,8 +7,9 @@
 //
 
 #import "StartViewModel.h"
-#import "SessionManager.h"
 #import "Session.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface StartViewModel ()
 
@@ -20,19 +21,22 @@
 
 @implementation StartViewModel
 
-- (void)setVisible:(BOOL)visible {
-    _visible = visible;
-    
-    SessionManager *sessionManager = [SessionManager sharedManager];
-    if (sessionManager.session) {
-        self.signedUpLabelText = [NSString stringWithFormat:@"Signed in with email:\n%@", sessionManager.session.email];
-        self.signedUpLabelVisible = YES;
-        self.signUpButtonVisible = NO;
-    } else {
-        self.signedUpLabelVisible = NO;
-        self.signUpButtonVisible = YES;
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _signUpButtonCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal empty];
+        }];
+        
+        RAC(self, signedUpLabelText) = [RACObserve(self, session) map:^id(Session *session) {
+            return [NSString stringWithFormat:@"Signed in with email:\n%@", session.email];
+        }];
+        RAC(self, signedUpLabelVisible) = [RACObserve(self, session) map:^id(Session *session) {
+            return @(session != nil);
+        }];
+        RAC(self, signUpButtonVisible) = [RACObserve(self, signedUpLabelVisible) not];
     }
-    
+    return self;
 }
 
 @end

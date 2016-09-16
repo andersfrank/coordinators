@@ -12,11 +12,9 @@
 
 @interface EnterPasswordViewModel : NSObject
 
-- (instancetype)initWithEmail:(NSString *)email;
-
 @property (nonatomic) NSString *password;
 
-// The execution signal will send a Session when the user has succesfully signed up.
+// Will send a verified password when the sign up button is tapped.
 @property (nonatomic, readonly) RACCommand *signUpCommand;
 
 @end

@@ -14,7 +14,7 @@
 
 @property (nonatomic) NSString *email;
 
-// Executed when the user taps the done button. Successful execution implies that the entered email is verified.
+// Sends a verified email when the done button is tapped.
 @property (nonatomic, readonly) RACCommand *doneButtonCommand;
 
 @end

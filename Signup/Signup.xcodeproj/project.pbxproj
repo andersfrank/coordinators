@@ -13,7 +13,8 @@
 		DA2445511D8BE36400455F2D /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2445501D8BE36400455F2D /* StartViewController.m */; };
 		DA2445541D8BE37300455F2D /* StartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2445531D8BE37300455F2D /* StartViewModel.m */; };
 		DA2445601D8BE6DC00455F2D /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24455D1D8BE6DC00455F2D /* Session.m */; };
-		DA2445611D8BE6DC00455F2D /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24455F1D8BE6DC00455F2D /* SessionManager.m */; };
+		DA2445651D8BEDAA00455F2D /* AppCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2445641D8BEDAA00455F2D /* AppCoordinator.m */; };
+		DA2445681D8BEF8A00455F2D /* SignUpCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2445671D8BEF8A00455F2D /* SignUpCoordinator.m */; };
 		DA27A8501D8BCF4900EFF30F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA27A84F1D8BCF4900EFF30F /* main.m */; };
 		DA27A8531D8BCF4900EFF30F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA27A8521D8BCF4900EFF30F /* AppDelegate.m */; };
 		DA27A8591D8BCF4900EFF30F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA27A8571D8BCF4900EFF30F /* Main.storyboard */; };
@@ -50,8 +51,10 @@
 		DA2445531D8BE37300455F2D /* StartViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewModel.m; sourceTree = "<group>"; };
 		DA24455C1D8BE6DC00455F2D /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		DA24455D1D8BE6DC00455F2D /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
-		DA24455E1D8BE6DC00455F2D /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
-		DA24455F1D8BE6DC00455F2D /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
+		DA2445631D8BEDAA00455F2D /* AppCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoordinator.h; sourceTree = "<group>"; };
+		DA2445641D8BEDAA00455F2D /* AppCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCoordinator.m; sourceTree = "<group>"; };
+		DA2445661D8BEF8A00455F2D /* SignUpCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCoordinator.h; sourceTree = "<group>"; };
+		DA2445671D8BEF8A00455F2D /* SignUpCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCoordinator.m; sourceTree = "<group>"; };
 		DA27A84B1D8BCF4900EFF30F /* Signup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA27A84F1D8BCF4900EFF30F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA27A8511D8BCF4900EFF30F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,10 +141,19 @@
 			children = (
 				DA24455C1D8BE6DC00455F2D /* Session.h */,
 				DA24455D1D8BE6DC00455F2D /* Session.m */,
-				DA24455E1D8BE6DC00455F2D /* SessionManager.h */,
-				DA24455F1D8BE6DC00455F2D /* SessionManager.m */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		DA2445621D8BED9D00455F2D /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				DA2445631D8BEDAA00455F2D /* AppCoordinator.h */,
+				DA2445641D8BEDAA00455F2D /* AppCoordinator.m */,
+				DA2445661D8BEF8A00455F2D /* SignUpCoordinator.h */,
+				DA2445671D8BEF8A00455F2D /* SignUpCoordinator.m */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		DA27A8421D8BCF4900EFF30F = {
@@ -167,6 +179,7 @@
 		DA27A84D1D8BCF4900EFF30F /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				DA2445621D8BED9D00455F2D /* Coordinators */,
 				DA27A8731D8BD26400EFF30F /* EnterEmail */,
 				DA2445471D8BE1BB00455F2D /* EnterPassword */,
 				DA24454E1D8BE36400455F2D /* Start */,
@@ -409,13 +422,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA2445611D8BE6DC00455F2D /* SessionManager.m in Sources */,
+				DA2445651D8BEDAA00455F2D /* AppCoordinator.m in Sources */,
 				DA27A87A1D8BD28C00EFF30F /* EnterEmailViewModel.m in Sources */,
 				DA27A8531D8BCF4900EFF30F /* AppDelegate.m in Sources */,
 				DA24454D1D8BE1BB00455F2D /* EnterPasswordViewModel.m in Sources */,
 				DA2445511D8BE36400455F2D /* StartViewController.m in Sources */,
 				DA27A8771D8BD27900EFF30F /* EnterEmailViewController.m in Sources */,
 				DA2445541D8BE37300455F2D /* StartViewModel.m in Sources */,
+				DA2445681D8BEF8A00455F2D /* SignUpCoordinator.m in Sources */,
 				DA24454C1D8BE1BB00455F2D /* EnterPasswordViewController.m in Sources */,
 				DA27A8501D8BCF4900EFF30F /* main.m in Sources */,
 				DA2445601D8BE6DC00455F2D /* Session.m in Sources */,
